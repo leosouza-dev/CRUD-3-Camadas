@@ -11,10 +11,16 @@ using System.Threading.Tasks;
 
 namespace DevIO.Data.Repository
 {
-    public abstract class Repositoy<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
         protected readonly MeuDbContext Db;
         protected readonly DbSet<TEntity> DbSet; // atalho para o DbSet (sem DbSet ficaria assim - ver método adicionar)
+
+        protected Repository(MeuDbContext db)
+        {
+            Db = db;
+            DbSet = db.Set<TEntity>();
+        }
 
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
         {
