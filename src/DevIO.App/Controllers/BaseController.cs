@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevIO.App.Controllers
 {
+    // podemos usar para validações e  notificações, por exemplo
     public abstract class BaseController : Controller
     {
     }
