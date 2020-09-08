@@ -93,6 +93,7 @@ namespace DevIO.App.Controllers
             // checa se a imagem foi alterada
             if(produtoViewModel.ImagemUpload != null) 
             {
+
                 var imgPrefixo = Guid.NewGuid() + "_"; // criando um prefixo único
                 if (!await UploadArquivo(produtoViewModel.ImagemUpload, imgPrefixo))
                 {
