@@ -19,6 +19,8 @@ using DevIO.Data.Repository;
 using AutoMapper;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
+using DevIO.App.Extensions;
 
 namespace DevIO.App
 {
@@ -59,6 +61,8 @@ namespace DevIO.App
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            // registrando o porvider de validação de moeda
+            services.AddSingleton<IValidationAttributeAdapterProvider, MoedaValidationAttributeAdapterProvider>();
 
             // add o automapper
             services.AddAutoMapper(typeof(Startup));
