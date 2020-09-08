@@ -17,6 +17,8 @@ using DevIO.Data.Context;
 using DevIO.Business.Interfaces;
 using DevIO.Data.Repository;
 using AutoMapper;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace DevIO.App
 {
@@ -84,6 +86,16 @@ namespace DevIO.App
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            // globalização
+            var defaultCuture = new CultureInfo("pt-BR");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(defaultCuture),
+                SupportedCultures = new List<CultureInfo> { defaultCuture },
+                SupportedUICultures = new List<CultureInfo> { defaultCuture }
+            };
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseMvc(routes =>
             {
